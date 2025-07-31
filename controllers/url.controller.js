@@ -3,9 +3,12 @@ import { URL } from "../models/url.model.js";
 
 const handleUrlShortner = async (req, res) => {
   const { url } = req.body;
+
   if (!url || typeof url !== "string") {
     return res.status(400).json({ message: "Invalid Url" });
   }
+  const existing = await URL.findOne({ redirectURL: url });
+  if (existing) return res.status(200).json({ message: "Url already exist" });
   const chars =
     "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
   let shortId = "";
