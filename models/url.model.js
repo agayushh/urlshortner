@@ -9,7 +9,7 @@ const urlSchema = new mongoose.Schema(
     redirectURL: {
       type: String,
       required: true,
-      unique: true
+      unique: true,
     },
     totalClicks: [
       {
@@ -17,7 +17,7 @@ const urlSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  { visitHistory: { timestamps: true } }
 );
 
 export const URL = mongoose.model("url", urlSchema);
