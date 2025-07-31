@@ -12,11 +12,11 @@ const urlSchema = new mongoose.Schema(
     },
     totalClicks: [
       {
-        timestamps: { type: Number },
+        timestamp: { type: Number },
       },
     ],
   },
   { timestamps: true }
 );
 
-export const URL = mongoose.model("url", userSchema);
+export const URL = mongoose.model("url", urlSchema);
