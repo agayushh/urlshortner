@@ -8,7 +8,13 @@ const handleUrlShortner = async (req, res) => {
     return res.status(400).json({ message: "Invalid Url" });
   }
   const existing = await URL.findOne({ redirectURL: url });
-  if (existing) return res.status(200).json({ message: "Url already exist" });
+  if (existing) {
+    return res.status(200).json({ 
+      message: "URL already exists",
+      shortId: existing.shortId,
+      shortURL: `http://localhost:8000/${existing.shortId}`
+    });
+  }
   const chars =
     "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890";
   let shortId = "";
